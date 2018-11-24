@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "key": 1,
+        "name": "Nile Ethiopian",
+        "visited": false,
+        "visitAgain": true
+    },
+    {
+        "id": 2,
+        "key": 2,
+        "name": "Woodlands",
+        "visited": false,
+        "visitAgain": true
+    },
+    {
+        "id": 3,
+        "key": 3,
+        "name": "Kabooki Sushi",
+        "visited": false,
+        "visitAgain": true
+    },
+    {
+        "id": 4,
+        "key": 4,
+        "name": "Morimoto Asia",
+        "visited": true,
+        "visitAgain": true
+    }
+]
