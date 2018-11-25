@@ -26,6 +26,7 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.send('go to /restauarants')
 });
+
 app.get('/api/restaurants', (req, res) => {
     connection.query(selectRestaurants, (err, results) => {
         if(err) {
@@ -38,6 +39,7 @@ app.get('/api/restaurants', (req, res) => {
         }
     });
 });
+
 
 app.listen(PORT, () => {
     console.log(`listening on http://localhost:${PORT}`)

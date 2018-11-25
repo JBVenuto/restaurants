@@ -1,6 +1,6 @@
 import React from "react";
 
-const All = (props) => (
+const AllRestaurants = (props) => (
     <div className="card">
         <div className="card-body">
             {props.name}
@@ -8,4 +8,4 @@ const All = (props) => (
     </div>   
 );
 
-export default All;
+export default AllRestaurants;

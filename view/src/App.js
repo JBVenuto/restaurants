@@ -9,8 +9,9 @@ import Title from "./components/Title";
 // import RestaurantCard from "./RestaurantCard";
 import NotVisited from "./components/NotVisited";
 import Visited from "./components/Visited";
-import All from "./components/All";
+// import AllRestaurants from "./components/AllRestaurants";
 // import NewRestaurant from "./NewRestaurant";
+
 
 class App extends Component {
   // Constructor to give state to the component.
@@ -18,20 +19,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // restaurantList: Restaurants,
       restaurants: [],
       toVisit: [],
       alreadyBeen: [],
-    }
+    };
+    this.sortRestaurants = this.sortRestaurants.bind(this);
   }
 
   componentWillMount () {
-    this.getRestaurants();
+    // this.getRestaurants();
     // this.sortRestaurants();
   }
 
   componentDidMount () {
-    console.log('first log of restaurant list: ', this.state.restaurants);
+    this.getRestaurants();
     this.sortRestaurants();
   }
 
@@ -39,6 +40,7 @@ class App extends Component {
     fetch('/api/restaurants')
     .then(res => res.json())
     .then(res => this.setState({ restaurants: res.data }))    
+    // .then(res => console.log('fetch CL ', res.data))
   }
 
   sortRestaurants() {
@@ -50,6 +52,7 @@ class App extends Component {
   render() {
     return (
       <Container>
+        {this.sortRestaurants()}
         <Title />
         <div className="row">
           <div className="col">
@@ -77,10 +80,10 @@ class App extends Component {
             )}
           </div>
 
-          <div className="col">
+          {/* <div className="col">
             <h3>All Restaurants</h3>
             {this.state.restaurants.map( restaurants =>
-              <All 
+              <AllRestaurants
                 id={restaurants.id}
                 key={restaurants.key}
                 name={restaurants.name}
@@ -88,7 +91,7 @@ class App extends Component {
                 visitAgain={restaurants.visitAgain}               
               />
             )}
-          </div>
+          </div> */}
         </div>              
         {/* <NewRestaurant />  */}
       </Container> 
