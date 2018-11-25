@@ -1,7 +1,7 @@
 // Import React and the main style sheet
 import React, { Component } from 'react';
 import './App.css';
-import Restaurants from './restaurants.json';
+// import Restaurants from './restaurants.json';
 
 // Components to be imported
 import Container from "./components/Container"
@@ -9,6 +9,7 @@ import Title from "./components/Title";
 // import RestaurantCard from "./RestaurantCard";
 import NotVisited from "./components/NotVisited";
 import Visited from "./components/Visited";
+import All from "./components/All";
 // import NewRestaurant from "./NewRestaurant";
 
 class App extends Component {
@@ -17,18 +18,31 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurantList: Restaurants,
+      // restaurantList: Restaurants,
+      restaurants: [],
       toVisit: [],
       alreadyBeen: [],
     }
   }
 
   componentWillMount () {
+    this.getRestaurants();
+    // this.sortRestaurants();
+  }
+
+  componentDidMount () {
+    console.log('first log of restaurant list: ', this.state.restaurants);
     this.sortRestaurants();
   }
 
+  getRestaurants () {
+    fetch('/api/restaurants')
+    .then(res => res.json())
+    .then(res => this.setState({ restaurants: res.data }))    
+  }
+
   sortRestaurants() {
-    this.state.restaurantList.map( restaurant => {
+    this.state.restaurants.map( restaurant => {
       return !restaurant.visited ? this.state.toVisit.push(restaurant) : this.state.alreadyBeen.push(restaurant);
     })
   }
@@ -39,7 +53,8 @@ class App extends Component {
         <Title />
         <div className="row">
           <div className="col">
-          {this.state.toVisit.map( toVisit =>
+            <h3>Not Visited Restaurants</h3>
+            {this.state.toVisit.map( toVisit =>
               <NotVisited 
                 id={toVisit.id}
                 key={toVisit.key}
@@ -50,6 +65,7 @@ class App extends Component {
             )}
           </div>
           <div className="col">
+            <h3>Visited Restaurants</h3>
             {this.state.alreadyBeen.map( alreadyBeen =>
               <Visited 
                 id={alreadyBeen.id}
@@ -57,6 +73,19 @@ class App extends Component {
                 name={alreadyBeen.name}
                 visited={alreadyBeen.visited}
                 visitAgain={alreadyBeen.visitAgain}               
+              />
+            )}
+          </div>
+
+          <div className="col">
+            <h3>All Restaurants</h3>
+            {this.state.restaurants.map( restaurants =>
+              <All 
+                id={restaurants.id}
+                key={restaurants.key}
+                name={restaurants.name}
+                visited={restaurants.visited}
+                visitAgain={restaurants.visitAgain}               
               />
             )}
           </div>

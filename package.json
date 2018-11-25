@@ -3,5 +3,23 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mysql": "^2.16.0"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "restaurants",
+  "description": "Application to track new restaurants to try",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JBVenuto/restaurants.git"
+  },
+  "author": "Joseph Venuto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JBVenuto/restaurants/issues"
+  },
+  "homepage": "https://github.com/JBVenuto/restaurants#readme"
 }
