@@ -24,6 +24,7 @@ class App extends Component {
       alreadyBeen: [],
     };
     this.sortRestaurants = this.sortRestaurants.bind(this);
+    this.visitRestaurant = this.visitRestaurant.bind(this);
   }
 
   componentWillMount () {
@@ -49,6 +50,12 @@ class App extends Component {
     })
   }
 
+  visitRestaurant = event => {
+    console.log('You clicked a button');
+    console.log(event.target);
+    // console.log(event.target);
+  }
+
   render() {
     return (
       <Container>
@@ -63,7 +70,9 @@ class App extends Component {
                 key={toVisit.key}
                 name={toVisit.name}
                 visited={toVisit.visited}
-                visitAgain={toVisit.visitAgain}               
+                visitAgain={toVisit.visitAgain}  
+                onClick={this.visitRestaurant}
+             
               />
             )}
           </div>

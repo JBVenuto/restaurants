@@ -12,6 +12,7 @@ const NotVisited = (props) => (
                 type="button"
                 button-id={props.id}
                 visited-status={props.visited}
+                onClick={props.onClick}
             >
                 Visited
             </button>

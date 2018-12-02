@@ -7,6 +7,7 @@ const app = express();
 const PORT = 8080;
 
 const selectRestaurants = 'SELECT * FROM restaurants';
+const visitRestaurant = 'UPDATE pizza SET devoured = true WHERE id = '
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -24,7 +25,7 @@ connection.connect(err => {
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send('go to /restauarants')
+    res.send('go to /api/restauarants')
 });
 
 app.get('/api/restaurants', (req, res) => {
@@ -39,6 +40,11 @@ app.get('/api/restaurants', (req, res) => {
         }
     });
 });
+
+app.put('/api/restaurants/:id', (req, res) => {
+    console.log(req);
+    // connection.query(visitRestaurant, )
+})
 
 
 app.listen(PORT, () => {
