@@ -46,17 +46,26 @@ app.get('/api/restaurants/:id', (req, res) => {
     console.log(req.params.id);
     console.log(Number.isInteger(req.params.id));
     console.log(Number.isInteger(tempId));
-    
-    connection.query(`${selectRestaurants} WHERE id = ${tempId}`, (err, results) => {
+
+    connection.query(`UPDATE restaurants SET visited = true WHERE id = ${tempId}`, (err, results) => {
         if(err) {
             return res.send(err)
         }
         else {
-            return res.json({
-                data: results
-            })
+            cb(results)
         }
     });
+    
+    // connection.query(`${selectRestaurants} WHERE id = ${tempId}`, (err, results) => {
+    //     if(err) {
+    //         return res.send(err)
+    //     }
+    //     else {
+    //         return res.json({
+    //             data: results
+    //         })
+    //     }
+    // });
    
 });
 
