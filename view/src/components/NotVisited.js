@@ -3,14 +3,17 @@ import React from "react";
 const NotVisited = (props) => (
     <div className="card">
         <div className="card-body">
-            <span>
+            <span
+                key={props.key}
+            >
                 {props.name}
             </span>
             <button 
+                key={props.key}
                 className="btn btn-secondary"
                 id="visit-button"
                 type="button"
-                button-id={props.id}
+                restnum={props.id}
                 visited-status={props.visited}
                 onClick={props.onClick}
             >

@@ -51,9 +51,12 @@ class App extends Component {
   }
 
   visitRestaurant = event => {
-    console.log('You clicked a button');
+    let restid= parseInt(event.target.getAttribute('restnum'));
     console.log(event.target);
-    // console.log(event.target);
+    console.log(Number.isInteger(event.target.getAttribute('restnum')));
+    console.log(Number.isInteger(restid));
+    console.log(event.target.className);
+    fetch(`/api/restaurants/${restid}`);
   }
 
   render() {
@@ -66,8 +69,8 @@ class App extends Component {
             <h3>Not Visited Restaurants</h3>
             {this.state.toVisit.map( toVisit =>
               <NotVisited 
-                id={toVisit.id}
                 key={toVisit.key}
+                id={toVisit.id}
                 name={toVisit.name}
                 visited={toVisit.visited}
                 visitAgain={toVisit.visitAgain}  

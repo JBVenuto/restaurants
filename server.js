@@ -52,7 +52,7 @@ app.get('/api/restaurants/:id', (req, res) => {
             return res.send(err)
         }
         else {
-            cb(results)
+            return res.sendStatus(200);
         }
     });
     
