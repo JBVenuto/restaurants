@@ -9,7 +9,7 @@ import Title from "./components/Title";
 // import RestaurantCard from "./RestaurantCard";
 import NotVisited from "./components/NotVisited";
 import Visited from "./components/Visited";
-// import AllRestaurants from "./components/AllRestaurants";
+import AllRestaurants from "./components/AllRestaurants";
 // import NewRestaurant from "./NewRestaurant";
 
 
@@ -50,6 +50,20 @@ class App extends Component {
     })
   }
 
+  // NotBeen() {
+  //   this.state.restaurants.map( restaurants => {
+  //     return !restaurants.visited ?
+  //     <NotVisited 
+  //       key={restaurants.key}
+  //       id={restaurants.id}
+  //       name={restaurants.name}
+  //       visited={restaurants.visited}
+  //       visitAgain={restaurants.visitAgain}  
+  //       onClick={this.visitRestaurant}
+  //     /> : <span />
+  //   })
+  // }
+
   visitRestaurant = event => {
     let restid= parseInt(event.target.getAttribute('restnum'));
     console.log(event.target);
@@ -57,6 +71,15 @@ class App extends Component {
     console.log(Number.isInteger(restid));
     console.log(event.target.className);
     fetch(`/api/restaurants/${restid}`);
+
+    //change visited status in restaurants array
+    this.setState({ visited: 1});
+
+    //find object in not visited array
+    let i = this.state.toVisit.findIndex(x => x.id === restid);
+    let tempObj = this.state.toVisit[i]; 
+    tempObj.visited = 1;
+    // this.setState({ alreadyBeen: this.state.alreadyBeen.push(tempObj) });
   }
 
   render() {
@@ -67,43 +90,31 @@ class App extends Component {
         <div className="row">
           <div className="col">
             <h3>Not Visited Restaurants</h3>
-            {this.state.toVisit.map( toVisit =>
+             {this.state.restaurants.map( restaurants => { return !restaurants.visited ?
               <NotVisited 
-                key={toVisit.key}
-                id={toVisit.id}
-                name={toVisit.name}
-                visited={toVisit.visited}
-                visitAgain={toVisit.visitAgain}  
-                onClick={this.visitRestaurant}
-             
-              />
-            )}
+                key={restaurants.key}
+                id={restaurants.id}
+                name={restaurants.name}
+                visited={restaurants.visited}
+                visitAgain={restaurants.visitAgain}  
+                onClick={this.visitRestaurant}             
+              /> : <div />
+              }
+             )} 
           </div>
           <div className="col">
             <h3>Visited Restaurants</h3>
-            {this.state.alreadyBeen.map( alreadyBeen =>
+            {this.state.restaurants.map( restaurants => { return restaurants.visited ?
               <Visited 
-                id={alreadyBeen.id}
-                key={alreadyBeen.key}
-                name={alreadyBeen.name}
-                visited={alreadyBeen.visited}
-                visitAgain={alreadyBeen.visitAgain}               
-              />
-            )}
-          </div>
-
-          {/* <div className="col">
-            <h3>All Restaurants</h3>
-            {this.state.restaurants.map( restaurants =>
-              <AllRestaurants
                 id={restaurants.id}
                 key={restaurants.key}
                 name={restaurants.name}
                 visited={restaurants.visited}
                 visitAgain={restaurants.visitAgain}               
-              />
+              /> : <div />
+              }
             )}
-          </div> */}
+          </div>
         </div>              
         {/* <NewRestaurant />  */}
       </Container> 
