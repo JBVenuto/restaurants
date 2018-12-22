@@ -41,7 +41,7 @@ app.get('/api/restaurants', (req, res) => {
     });
 });
 
-app.get('/api/restaurants/:id', (req, res) => {
+app.put('/api/restaurants/:id', (req, res) => {
     let tempId = parseInt(req.params.id);
     console.log(req.params.id);
     console.log(Number.isInteger(req.params.id));
@@ -55,18 +55,19 @@ app.get('/api/restaurants/:id', (req, res) => {
             return res.sendStatus(200);
         }
     });
-    
-    // connection.query(`${selectRestaurants} WHERE id = ${tempId}`, (err, results) => {
-    //     if(err) {
-    //         return res.send(err)
-    //     }
-    //     else {
-    //         return res.json({
-    //             data: results
-    //         })
-    //     }
-    // });
-   
+});
+
+app.post('/api/restaurants/create', (req, res) => {
+    let restaurantName;
+
+    connection.query(`INSERT INTO restaurants(name) VALUES(${restaurantName})`, (err, results) => {
+        if(err) {
+            return res.send(err)
+        }
+        else {
+            return res.sendStatus(200);
+        }
+    });
 });
 
 

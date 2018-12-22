@@ -9,8 +9,7 @@ import Title from "./components/Title";
 // import RestaurantCard from "./RestaurantCard";
 import NotVisited from "./components/NotVisited";
 import Visited from "./components/Visited";
-import AllRestaurants from "./components/AllRestaurants";
-// import NewRestaurant from "./NewRestaurant";
+import NewRestaurant from "./components/NewRestaurant";
 
 
 class App extends Component {
@@ -115,8 +114,14 @@ class App extends Component {
               }
             )}
           </div>
-        </div>              
-        {/* <NewRestaurant />  */}
+        </div>    
+        <br></br> 
+        <div className="row">
+          <div className="col">
+            <NewRestaurant />
+          </div>
+        </div>         
+         
       </Container> 
     )
   }
