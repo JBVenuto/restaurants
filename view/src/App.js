@@ -14,7 +14,6 @@ import NewRestaurant from "./components/NewRestaurant";
 
 class App extends Component {
   // Constructor to give state to the component.
-  // This I think this will only be used for adding new restaurants
   constructor(props) {
     super(props);
     this.state = {
@@ -26,42 +25,15 @@ class App extends Component {
     this.visitRestaurant = this.visitRestaurant.bind(this);
   }
 
-  componentWillMount () {
-    // this.getRestaurants();
-    // this.sortRestaurants();
-  }
-
   componentDidMount () {
     this.getRestaurants();
-    this.sortRestaurants();
   }
 
   getRestaurants () {
     fetch('/api/restaurants')
     .then(res => res.json())
     .then(res => this.setState({ restaurants: res.data }))    
-    // .then(res => console.log('fetch CL ', res.data))
   }
-
-  sortRestaurants() {
-    this.state.restaurants.map( restaurant => {
-      return !restaurant.visited ? this.state.toVisit.push(restaurant) : this.state.alreadyBeen.push(restaurant);
-    })
-  }
-
-  // NotBeen() {
-  //   this.state.restaurants.map( restaurants => {
-  //     return !restaurants.visited ?
-  //     <NotVisited 
-  //       key={restaurants.key}
-  //       id={restaurants.id}
-  //       name={restaurants.name}
-  //       visited={restaurants.visited}
-  //       visitAgain={restaurants.visitAgain}  
-  //       onClick={this.visitRestaurant}
-  //     /> : <span />
-  //   })
-  // }
 
   visitRestaurant = event => {
     let restid= parseInt(event.target.getAttribute('restnum'));
