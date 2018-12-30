@@ -18,11 +18,11 @@ class App extends Component {
     super(props);
     this.state = {
       restaurants: [],
-      toVisit: [],
-      alreadyBeen: [],
+      // toVisit: [],
+      // alreadyBeen: [],
     };
-    this.sortRestaurants = this.sortRestaurants.bind(this);
     this.visitRestaurant = this.visitRestaurant.bind(this);
+    this.addRestaurant = this.addRestaurant.bind(this);
   }
 
   componentDidMount () {
@@ -36,27 +36,43 @@ class App extends Component {
   }
 
   visitRestaurant = event => {
-    let restid= parseInt(event.target.getAttribute('restnum'));
+    let restid = parseInt(event.target.getAttribute('restnum'));
     console.log(event.target);
     console.log(Number.isInteger(event.target.getAttribute('restnum')));
     console.log(Number.isInteger(restid));
     console.log(event.target.className);
-    fetch(`/api/restaurants/${restid}`);
+    fetch(`http://localhost:8080/api/restaurants/${restid}`);
 
     //change visited status in restaurants array
-    this.setState({ visited: 1});
+    // this.setState({ visited: true});
 
+    // ---------- *** Below is closer to the correct way than the commented out above *** --------------
     //find object in not visited array
-    let i = this.state.toVisit.findIndex(x => x.id === restid);
-    let tempObj = this.state.toVisit[i]; 
-    tempObj.visited = 1;
+    // let i = this.state.toVisit.findIndex(x => x.id === restid);
+    // let tempObj = this.state.toVisit[i]; 
+    // tempObj.visited = 1;
     // this.setState({ alreadyBeen: this.state.alreadyBeen.push(tempObj) });
+
+    // Change visited status
+    let changeRestaurants = this.state.restaurants;
+    console.log(changeRestaurants);
+    let restIndex = changeRestaurants.map(function(x) {return x.id; }).indexOf(restid);
+    console.log(restIndex);
+    changeRestaurants[restIndex].visited = 1;
+    console.log(changeRestaurants);
+
+    this.setState({ restaurants: changeRestaurants });
+  }
+
+  addRestaurant = event => {
+    console.log('add button clicked!');
+    console.log(event);
+    fetch('/api/restaurants/create');
   }
 
   render() {
     return (
       <Container>
-        {this.sortRestaurants()}
         <Title />
         <div className="row">
           <div className="col">
@@ -90,7 +106,9 @@ class App extends Component {
         <br></br> 
         <div className="row">
           <div className="col">
-            <NewRestaurant />
+            <NewRestaurant
+              onClick={this.addRestaurant}
+            />
           </div>
         </div>         
          

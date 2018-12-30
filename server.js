@@ -41,7 +41,7 @@ app.get('/api/restaurants', (req, res) => {
     });
 });
 
-app.put('/api/restaurants/:id', (req, res) => {
+app.get('/api/restaurants/:id', (req, res) => {
     let tempId = parseInt(req.params.id);
     console.log(req.params.id);
     console.log(Number.isInteger(req.params.id));
@@ -59,6 +59,7 @@ app.put('/api/restaurants/:id', (req, res) => {
 
 app.post('/api/restaurants/create', (req, res) => {
     let restaurantName;
+    console.log(req.body);
 
     connection.query(`INSERT INTO restaurants(name) VALUES(${restaurantName})`, (err, results) => {
         if(err) {
