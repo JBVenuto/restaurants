@@ -20,8 +20,10 @@ class App extends Component {
       restaurants: [],
       // toVisit: [],
       // alreadyBeen: [],
+      restaurantName: ''
     };
     this.visitRestaurant = this.visitRestaurant.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.addRestaurant = this.addRestaurant.bind(this);
   }
 
@@ -41,7 +43,7 @@ class App extends Component {
     console.log(Number.isInteger(event.target.getAttribute('restnum')));
     console.log(Number.isInteger(restid));
     console.log(event.target.className);
-    fetch(`http://localhost:8080/api/restaurants/${restid}`);
+    fetch(`/api/restaurants/${restid}`);
 
     //change visited status in restaurants array
     // this.setState({ visited: true});
@@ -62,6 +64,10 @@ class App extends Component {
     console.log(changeRestaurants);
 
     this.setState({ restaurants: changeRestaurants });
+  }
+
+  handleChange = event => {
+    this.setState({ restaurantName: event.target.restauarntChange });
   }
 
   addRestaurant = event => {
@@ -108,6 +114,7 @@ class App extends Component {
           <div className="col">
             <NewRestaurant
               onClick={this.addRestaurant}
+              onChange={this.onChange}
             />
           </div>
         </div>         

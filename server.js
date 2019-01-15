@@ -60,6 +60,7 @@ app.get('/api/restaurants/:id', (req, res) => {
 app.post('/api/restaurants/create', (req, res) => {
     let restaurantName;
     console.log(req.body);
+    console.log("anything?");
 
     connection.query(`INSERT INTO restaurants(name) VALUES(${restaurantName})`, (err, results) => {
         if(err) {

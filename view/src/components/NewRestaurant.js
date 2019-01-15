@@ -1,8 +1,8 @@
 import React from "react";
 
 const NewRestaurant = (props) => (
-    <form>
-        <input type="text" name="newRestaurantName" />
+    <form action='/api/restaurants/create' method="POST">
+        <input type="text" name="newRestaurantName"  />
         <button 
             type="button" 
             className="btn btn-secondary"
