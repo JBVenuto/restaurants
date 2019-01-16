@@ -67,13 +67,15 @@ class App extends Component {
   }
 
   handleChange = event => {
-    this.setState({ restaurantName: event.target.restauarntChange });
+    this.setState({ restaurantName: event.target.value });
   }
 
   addRestaurant = event => {
     console.log('add button clicked!');
+    console.log(`Restaurant Name: ${this.state.restaurantName}`);
     console.log(event);
-    fetch('/api/restaurants/create');
+    event.preventDefault();
+    // fetch('/api/restaurants/create');
   }
 
   render() {
@@ -113,8 +115,9 @@ class App extends Component {
         <div className="row">
           <div className="col">
             <NewRestaurant
-              onClick={this.addRestaurant}
-              onChange={this.onChange}
+              value={this.state.value}
+              onSubmit={this.addRestaurant}
+              onChange={this.handleChange}
             />
           </div>
         </div>         
