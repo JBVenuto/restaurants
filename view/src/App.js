@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import './App.css';
 // import Restaurants from './restaurants.json';
+import axios from "axios";
 
 // Components to be imported
 import Container from "./components/Container"
@@ -75,7 +76,18 @@ class App extends Component {
     console.log(`Restaurant Name: ${this.state.restaurantName}`);
     console.log(event);
     event.preventDefault();
-    // fetch('/api/restaurants/create');
+    // fetch('/api/restaurants/create', {
+    //   method: 'POST',
+    //   headers: {'Content-type': 'application/x-www-form-urlencoded'},
+    //   body: this.state.restaurantName
+    // })
+    axios.post({
+      method: 'post',
+      url: '/api/restaurants/create',
+      data: {
+        newRestName: this.state.restaurantName
+      }
+    });
   }
 
   render() {
