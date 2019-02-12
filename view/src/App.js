@@ -91,6 +91,7 @@ class App extends Component {
     //     newRestName: this.state.restaurantName
     //   }
     // });
+    this.getRestaurants();
   }
 
   render() {
