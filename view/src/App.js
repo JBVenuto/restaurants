@@ -1,13 +1,11 @@
 // Import React and the main style sheet
 import React, { Component } from 'react';
 import './App.css';
-// import Restaurants from './restaurants.json';
-import axios from "axios";
+
 
 // Components to be imported
 import Container from "./components/Container"
 import Title from "./components/Title";
-// import RestaurantCard from "./RestaurantCard";
 import NotVisited from "./components/NotVisited";
 import Visited from "./components/Visited";
 import NewRestaurant from "./components/NewRestaurant";
@@ -19,10 +17,10 @@ class App extends Component {
     super(props);
     this.state = {
       restaurants: [],
-      // toVisit: [],
-      // alreadyBeen: [],
       restaurantName: ''
     };
+
+    // Bind the functions that will be used in the app
     this.visitRestaurant = this.visitRestaurant.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.addRestaurant = this.addRestaurant.bind(this);
@@ -32,12 +30,14 @@ class App extends Component {
     this.getRestaurants();
   }
 
+  // Function to get the restaurants and set them to the state
   getRestaurants () {
     fetch('/api/restaurants')
     .then(res => res.json())
     .then(res => this.setState({ restaurants: res.data }))    
   }
 
+  // Function to update the visited status of a restaurant
   visitRestaurant = event => {
     let restid = parseInt(event.target.getAttribute('restnum'));
     console.log(event.target);
@@ -45,16 +45,6 @@ class App extends Component {
     console.log(Number.isInteger(restid));
     console.log(event.target.className);
     fetch(`/api/restaurants/${restid}`);
-
-    //change visited status in restaurants array
-    // this.setState({ visited: true});
-
-    // ---------- *** Below is closer to the correct way than the commented out above *** --------------
-    //find object in not visited array
-    // let i = this.state.toVisit.findIndex(x => x.id === restid);
-    // let tempObj = this.state.toVisit[i]; 
-    // tempObj.visited = 1;
-    // this.setState({ alreadyBeen: this.state.alreadyBeen.push(tempObj) });
 
     // Change visited status
     let changeRestaurants = this.state.restaurants;
@@ -71,6 +61,7 @@ class App extends Component {
     this.setState({ restaurantName: event.target.value });
   }
 
+  // Function to add a new restaurant to the list of not visited restaurants
   addRestaurant = event => {
     console.log('add button clicked!');
     console.log(`Restaurant Name: ${this.state.restaurantName}`);
@@ -80,17 +71,11 @@ class App extends Component {
     fetch('/api/restaurants/create', {
       method: 'POST',
       headers: {'Content-type': 'application/x-www-form-urlencoded'},
-      // headers: {'Content-type': 'application/JSON'},
-      // body: JSON.stringify(this.state.restaurantName)
+
       body: (newRestName)
     })
-    // axios.post({
-    //   method: 'post',
-    //   url: '/api/restaurants/create',
-    //   data: {
-    //     newRestName: this.state.restaurantName
-    //   }
-    // });
+
+    // Update the restaurant list based on the database
     this.getRestaurants();
   }
 
