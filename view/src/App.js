@@ -75,19 +75,22 @@ class App extends Component {
     console.log('add button clicked!');
     console.log(`Restaurant Name: ${this.state.restaurantName}`);
     console.log(event);
+    let newRestName = this.state.restaurantName;
     event.preventDefault();
-    // fetch('/api/restaurants/create', {
-    //   method: 'POST',
-    //   headers: {'Content-type': 'application/x-www-form-urlencoded'},
-    //   body: this.state.restaurantName
-    // })
-    axios.post({
-      method: 'post',
-      url: '/api/restaurants/create',
-      data: {
-        newRestName: this.state.restaurantName
-      }
-    });
+    fetch('/api/restaurants/create', {
+      method: 'POST',
+      headers: {'Content-type': 'application/x-www-form-urlencoded'},
+      // headers: {'Content-type': 'application/JSON'},
+      // body: JSON.stringify(this.state.restaurantName)
+      body: (newRestName)
+    })
+    // axios.post({
+    //   method: 'post',
+    //   url: '/api/restaurants/create',
+    //   data: {
+    //     newRestName: this.state.restaurantName
+    //   }
+    // });
   }
 
   render() {

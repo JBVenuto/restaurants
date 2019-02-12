@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const mysql = require('mysql');
 
@@ -57,17 +58,23 @@ app.get('/api/restaurants/:id', (req, res) => {
     });
 });
 
-app.post('/api/restaurants/create', (req, res) => {
-    let restaurantName;
+app.post('/api/restaurants/create', bodyParser.urlencoded(), function(req, res) {
+    let restaurantName = String(Object.keys(req.body));
     console.log("\/\/\/ TEST BELOW \/\/\/")
     console.log(req);
+    console.log(restaurantName);
+    // let sRestName = JSON.stringify(req.body);
+    // console.log(`Stingified restaurant name: ${sRestName}`);
     console.log("anything?");
 
-    connection.query(`INSERT INTO restaurants(name) VALUES(${restaurantName})`, (err, results) => {
+    connection.query(`INSERT INTO restaurants (name) VALUES ('${restaurantName}')`, (err, results) => {
         if(err) {
+            console.log("womp womp");
+            console.log(err);
             return res.send(err)
         }
         else {
+            console.log("great job");
             return res.sendStatus(200);
         }
     });
