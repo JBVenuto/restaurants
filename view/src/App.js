@@ -2,13 +2,13 @@
 import React, { Component } from 'react';
 import './App.css';
 
-
 // Components to be imported
 import Container from "./components/Container"
 import Title from "./components/Title";
 import NotVisited from "./components/NotVisited";
 import Visited from "./components/Visited";
 import NewRestaurant from "./components/NewRestaurant";
+import BackGround from "./components/BackGround";
 
 
 class App extends Component {
@@ -80,6 +80,7 @@ class App extends Component {
 
   render() {
     return (
+      <div className="all">
       <Container>
         <Title />
         <div className="row">
@@ -123,6 +124,7 @@ class App extends Component {
         </div>         
          
       </Container> 
+       </div> 
     )
   }
 }

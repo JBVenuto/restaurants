@@ -5,4 +5,4 @@ This application is designed to help track different restaurants that are either
 When you find out about a new restaurant you would like to try, simply put it's name into the "Add Restauarnt" field, and click the add button. After you visit the restaurant click the "Visited" button and the restaurant will move to the already visited list.
 
 ## 
-[Background picture is by Jason Leung and was posted on Unsplash](https://unsplash.com/photos/poI7DelFiVA)
+[Background picture is by Jay Wennington and was posted on Unsplash](https://unsplash.com/photos/N_Y88TWmGwA)
