@@ -71,7 +71,6 @@ class App extends Component {
     fetch('/api/restaurants/create', {
       method: 'POST',
       headers: {'Content-type': 'application/x-www-form-urlencoded'},
-
       body: (newRestName)
     })
 
