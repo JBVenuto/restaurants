@@ -9,12 +9,19 @@ const PORT = 8080;
 
 const selectRestaurants = 'SELECT * FROM restaurants';
 
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "restaurantdb"
-});
+const connection;
+
+if(process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} 
+else {
+   connection = mysql.createConnection({
+        host: "localhost",
+        user: "root",
+        password: "",
+        database: "restaurantdb"
+    });
+}
 
 connection.connect(err => {
     if(err) {
