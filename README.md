@@ -8,5 +8,5 @@ When you find out about a new restaurant you would like to try, simply put it's 
 This Restaurant Tracker uses React on the front end and is hosted on GitHub.com. The back end is built using Node.js and the database was build using MySQL. The database is hosted on Heroku.com.
 
 ## 
-[Click here for the front end portion of this application](https://github.com/JBVenuto/restaurantfrontend)--
+[Click here for the front end portion of this application](https://github.com/JBVenuto/restaurantfrontend)
 [Background picture is by Jay Wennington and was posted on Unsplash](https://unsplash.com/photos/N_Y88TWmGwA)
