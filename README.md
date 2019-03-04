@@ -9,4 +9,5 @@ This Restaurant Tracker uses React on the front end and is hosted on GitHub.com.
 
 ## 
 [Click here for the front end portion of this application](https://github.com/JBVenuto/restaurantfrontend)
+
 [Background picture is by Jay Wennington and was posted on Unsplash](https://unsplash.com/photos/N_Y88TWmGwA)
