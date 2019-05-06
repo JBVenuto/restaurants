@@ -67,21 +67,31 @@ app.get('/api/restaurants/:id', (req, res) => {
 
 app.post('/api/restaurants/create', bodyParser.urlencoded(), function(req, res) {
     let restaurantName = String(Object.keys(req.body));
-    console.log("\/\/\/ TEST BELOW \/\/\/")
-    console.log(req);
-    console.log(restaurantName);
     // let sRestName = JSON.stringify(req.body);
     // console.log(`Stingified restaurant name: ${sRestName}`);
-    console.log("anything?");
 
     connection.query(`INSERT INTO restaurants (name) VALUES ('${restaurantName}')`, (err, results) => {
         if(err) {
-            console.log("womp womp");
             console.log(err);
             return res.send(err)
         }
         else {
-            console.log("great job");
+            return res.sendStatus(200);
+        }
+    });
+});
+
+app.get('/api/restaurants/rate/:id', (req, res) => {
+    let tempId = parseInt(req.params.id);
+    console.log(req.params.id);
+    console.log(Number.isInteger(req.params.id));
+    console.log(Number.isInteger(tempId));
+
+    connection.query(`UPDATE restaurants SET visitAgain = false WHERE id = ${tempId}`, (err, results) => {
+        if(err) {
+            return res.send(err)
+        }
+        else {
             return res.sendStatus(200);
         }
     });
