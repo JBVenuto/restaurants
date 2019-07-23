@@ -14,10 +14,12 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+// Use cors to allow access from front end
+app.use(cors());
 // Use the routes set up in the controller
 app.use(routes);
 
-app.use(cors());
+// app.use(cors());
 
 // Set the application to listen on the port
 app.listen(PORT, () => {
