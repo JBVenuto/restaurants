@@ -1,4 +1,5 @@
-const mysql = require('mysql2');
+const Sequelize = require("sequelize");
+var mysql = require("mysql2");
 
 let connection;
 
@@ -6,6 +7,7 @@ let connection;
 if(process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
     console.log("connected to jawsDB");
+    console.log(process.env.JAWSDB_URL)
 } 
 
 // If unable to connect to JAWSDB connect to the local database
